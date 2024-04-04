@@ -54,8 +54,8 @@ func primeFactors(n int, es []int) map[int]int {
 /*
 Implementación de algoritmo para el cómputo de decomp(X)
 */
-func decomp(n int) int64 {
-	accum := int64(0)
+func decomp(n int) int {
+	accum := 0
 	es := eratosthenesSieve(n)
 
 	for i := 1; i < n; i++ {
@@ -69,7 +69,7 @@ func decomp(n int) int64 {
 		for _, v := range pf2 {
 			nd2 *= (v + 1)
 		}
-		accum += int64(2*nd1) * int64(2*nd2)
+		accum += 4 * nd1 * nd2
 	}
 
 	return accum
