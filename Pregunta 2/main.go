@@ -59,12 +59,17 @@ func decomp(n int) int64 {
 	es := eratosthenesSieve(n)
 
 	for i := 1; i < n; i++ {
-		pf := primeFactors(i, es)
-		nd := 1
-		for _, v := range pf {
-			nd *= (v + 1)
+		pf1 := primeFactors(i, es)
+		nd1 := 1
+		pf2 := primeFactors(n-i, es)
+		nd2 := 1
+		for _, v := range pf1 {
+			nd1 *= (v + 1)
 		}
-		accum += int64(2 * nd)
+		for _, v := range pf2 {
+			nd2 *= (v + 1)
+		}
+		accum += int64(2*nd1) * int64(2*nd2)
 	}
 
 	return accum
